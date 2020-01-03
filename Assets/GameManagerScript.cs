@@ -4,33 +4,18 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public Vector3 LeftMovement;   
-    public Vector3 RightMovement;
-    public Vector3 UpMovement;
     public GameObject player;
-    // Start is called before the first frame update
+    private Vector3 offset;
+    // Update is called once per frame
     void Start()
     {
-        
+        offset = transform.position - player.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate() 
     {
-        playerMovement();
+        transform.position = player.transform.position + offset;
     }
 
-    public void playerMovement()
-    {
-        if(Input.GetKeyDown(KeyCode.A)){
-            player.GetComponent<Transform>().position += LeftMovement;
-        }
-        if(Input.GetKeyDown(KeyCode.D)){
-            player.GetComponent<Transform>().position += RightMovement;
-        }
-        if(Input.GetKeyDown(KeyCode.W)){
-            player.GetComponent<Transform>().position += UpMovement;
-        }
-        
-    }
+
 }
